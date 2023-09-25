@@ -23,16 +23,22 @@ function ProductListingPage() {
 
   const handleAddCart = (id) => {
     console.log(`add ${id}`);
-    const result = searchAndAct(id, "add", data);
+    let result = searchAndAct(id, "add", data);
     console.log(result[id - 1]);
     setData(result);
+    result = searchAndAct(id, "add", resultData);
+    console.log(result[id - 1]);
+    setResultData(result);
   };
 
   const handleRemoveCart = (id) => {
     console.log(`remove ${id}`);
-    const result = searchAndAct(id, "remove", data);
+    let result = searchAndAct(id, "remove", data);
     console.log(result[id - 1]);
     setData(result);
+    result = searchAndAct(id, "remove", data);
+    console.log(result[id - 1]);
+    setResultData(result);
   };
 
   return (

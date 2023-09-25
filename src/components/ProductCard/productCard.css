@@ -29,7 +29,7 @@
     position: absolute;
     top:6px;
     left: 6px;
-    background-color: #ffffff8d;
+    background-color: #ffffffbb;
     padding: 2px;
     border-radius: 5px;
     font-size: 1rem;
@@ -81,4 +81,28 @@
     background-color: #ddd8fc;
     color: #6e58ff;
     cursor: not-allowed;
+}
+
+.interactive-btn{
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    padding: 3px 12px;
+    background-color: #ddd8fc;
+    font-size: large;
+    color: #6e58ff;
+}
+
+.interactive-btn:hover{
+    background-color: #ddd8fc;
+    box-shadow: 0 1px 6px 0 #ddd8fc;
+}
+
+.interactive-value{
+    font-size: 1rem;
+    font-weight: 600;
+    color: #6e58ff;
+    margin: 0;
+    padding: 3px 7px;
 }

@@ -2,7 +2,7 @@ const searchAndAct = (id, action, data) => {
   if (action === "add") {
     return [
       ...data.map((item) => {
-        if (item.id === id) {
+        if (item.id === id && item.quantity > 0) {
           return {
             ...item,
             quantity: item.quantity - 1,
