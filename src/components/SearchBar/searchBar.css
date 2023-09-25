@@ -9,7 +9,7 @@
     width: 40%;
     z-index: 1;
     overflow-y: auto;
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
     margin: 67px auto;
@@ -47,10 +47,10 @@ input{
     margin-top: 15px;
     margin-bottom: 6px;
     padding: 4px;
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
-    margin: 10px auto;
+    margin: 12px auto;
 
 }
 

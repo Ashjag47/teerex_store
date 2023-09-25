@@ -1,21 +1,13 @@
 import React, { useState } from "react";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import data from "../../data/catalogue.json";
 import "./searchBar.css";
 
-function SearchBar() {
-  const [searchTerm, setSearchTerm] = useState("");
+function SearchBar({ searchTerm, setSearchTerm, data, onSearch }) {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
     setShowDropdown(true);
-  };
-
-  const onSearch = (searchItem) => {
-    setSearchTerm(searchItem);
-    setShowDropdown(false);
-    console.log(searchItem);
   };
 
   return (
@@ -31,6 +23,7 @@ function SearchBar() {
           className="search-button"
           onClick={() => {
             onSearch(searchTerm);
+            setShowDropdown(false);
           }}
         >
           <SearchOutlinedIcon sx={{ fontSize: 33 }} />
@@ -55,7 +48,10 @@ function SearchBar() {
                 <div
                   className="search-dropdown-item"
                   key={item.id}
-                  onClick={() => onSearch(item.name)}
+                  onClick={() => {
+                    onSearch(item.name);
+                    setShowDropdown(false);
+                  }}
                 >
                   {item.name}
                 </div>
