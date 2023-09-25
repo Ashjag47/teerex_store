@@ -2,8 +2,10 @@ import React from "react";
 import "./navbar.css";
 import Badge from "@mui/material/Badge";
 import ShoppingCartTwoToneIcon from "@mui/icons-material/ShoppingCartTwoTone";
+import { useNavigate } from "react-router-dom";
 
 function Navbar({ cartItemIds }) {
+  const navigate = useNavigate();
   return (
     <nav className="navbar">
       <div className="logo">
@@ -20,16 +22,18 @@ function Navbar({ cartItemIds }) {
       <div className="navbar-links">
         <ul>
           <li>
-            <a href="/#">Products</a>
+            <div className="link" onClick={() => navigate(`/`)}>
+              Product
+            </div>
           </li>
           <li>
-            <a href="/#">
+            <div className="link" onClick={() => navigate(`/cart`)}>
               <Badge badgeContent={cartItemIds.length} color="secondary">
                 <ShoppingCartTwoToneIcon
                   sx={{ color: "#6e58ff", fontSize: 30 }}
                 />
               </Badge>
-            </a>
+            </div>
           </li>
         </ul>
       </div>

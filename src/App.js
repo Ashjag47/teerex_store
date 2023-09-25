@@ -1,12 +1,16 @@
 import "./App.css";
-import { ProductListingPage } from "./pages";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ProductListingPage, ShoppingCartPage } from "./pages";
 
 function App() {
   return (
     <div className="App">
-      <div>
-        <ProductListingPage />
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<ProductListingPage />} />
+          <Route path="/cart" element={<ShoppingCartPage />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
