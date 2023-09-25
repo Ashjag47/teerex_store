@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { Navbar, SearchBar, ProductCard } from "../../components";
 import "./productListingPage.css";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import data from "../../data/catalogue.json";
+import mockData from "../../data/catalogue.json";
+import searchAndAct from "../../utils/searchAndAct";
 
 function ProductListingPage() {
   const [ShowSide, setShowSide] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [data, setData] = useState(mockData); // data is the original data from catalogue.json
   const [resultData, setResultData] = useState(data);
+  const [cartItemIds, setCartItemIds] = useState([]); // cartItemIds is the array of ids of the items in the cart [1, 2, 3
 
   const onSearch = (searchItem) => {
     setSearchTerm(searchItem);
@@ -18,9 +21,23 @@ function ProductListingPage() {
     );
   };
 
+  const handleAddCart = (id) => {
+    console.log(`add ${id}`);
+    const result = searchAndAct(id, "add", data);
+    console.log(result[id - 1]);
+    setData(result);
+  };
+
+  const handleRemoveCart = (id) => {
+    console.log(`remove ${id}`);
+    const result = searchAndAct(id, "remove", data);
+    console.log(result[id - 1]);
+    setData(result);
+  };
+
   return (
     <div>
-      <Navbar />
+      <Navbar cartItemIds={cartItemIds} />
       <div className="search-holder">
         <SearchBar
           searchTerm={searchTerm}
@@ -42,7 +59,13 @@ function ProductListingPage() {
         </div>
 
         <div className="product-card-holder">
-          <ProductCard data={resultData} />
+          <ProductCard
+            data={resultData}
+            handleAddCart={handleAddCart}
+            handleRemoveCart={handleRemoveCart}
+            cartItemIds={cartItemIds}
+            setCartItemIds={setCartItemIds}
+          />
         </div>
       </div>
     </div>

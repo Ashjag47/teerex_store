@@ -3,7 +3,7 @@ import "./navbar.css";
 import Badge from "@mui/material/Badge";
 import ShoppingCartTwoToneIcon from "@mui/icons-material/ShoppingCartTwoTone";
 
-function Navbar() {
+function Navbar({ cartItemIds }) {
   return (
     <nav className="navbar">
       <div className="logo">
@@ -24,7 +24,7 @@ function Navbar() {
           </li>
           <li>
             <a href="/#">
-              <Badge badgeContent={4} color="secondary">
+              <Badge badgeContent={cartItemIds.length} color="secondary">
                 <ShoppingCartTwoToneIcon
                   sx={{ color: "#6e58ff", fontSize: 30 }}
                 />
