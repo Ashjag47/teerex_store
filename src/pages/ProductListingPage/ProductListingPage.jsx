@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, SearchBar } from "../../components";
+import { Navbar, SearchBar, ProductCard } from "../../components";
 
 function ProductListingPage() {
   return (
@@ -7,6 +7,9 @@ function ProductListingPage() {
       <Navbar />
       <div className="search-holder">
         <SearchBar />
+      </div>
+      <div className="product-card-holder">
+        <ProductCard />
       </div>
     </div>
   );

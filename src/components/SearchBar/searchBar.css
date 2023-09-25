@@ -8,6 +8,11 @@
     margin: auto;
     width: 40%;
     z-index: 1;
+    overflow-y: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 67px auto;
 }
 
 .search-dropdown:empty{
@@ -42,6 +47,11 @@ input{
     margin-top: 15px;
     margin-bottom: 6px;
     padding: 4px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 10px auto;
+
 }
 
 .search-input input:focus{
