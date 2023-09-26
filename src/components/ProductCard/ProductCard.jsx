@@ -1,6 +1,8 @@
 import React from "react";
 import "./productCard.css";
 import { render } from "@testing-library/react";
+import { useDispatch } from "react-redux";
+import { addCartItem, reduceCartItem } from "../../actions";
 
 function ProductCard({
   data,
@@ -9,6 +11,7 @@ function ProductCard({
   setCartItemIds,
   handleRemoveCart,
 }) {
+  const dispatch = useDispatch();
   return (
     <>
       {data.map((item) => {
@@ -38,6 +41,7 @@ function ProductCard({
                         onClick={() => {
                           console.log(cartItemIds);
                           handleAddCart(item.id);
+                          dispatch(addCartItem([...cartItemIds, item.id]));
                           setCartItemIds([...cartItemIds, item.id]);
                           render();
                         }}
@@ -58,6 +62,7 @@ function ProductCard({
                               .slice(0, index)
                               .concat(temp.slice(index + 1));
                             console.log(temp);
+                            dispatch(reduceCartItem([...temp]));
                             setCartItemIds([...temp]);
                             handleRemoveCart(item.id);
                           }}
@@ -74,6 +79,7 @@ function ProductCard({
                             className="interactive-btn"
                             onClick={() => {
                               handleAddCart(item.id);
+                              dispatch(addCartItem([...cartItemIds, item.id]));
                               setCartItemIds([...cartItemIds, item.id]);
                               console.log(cartItemIds);
                               render();

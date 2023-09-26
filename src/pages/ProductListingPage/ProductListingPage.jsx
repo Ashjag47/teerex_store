@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import { Navbar, SearchBar, ProductCard } from "../../components";
 import "./productListingPage.css";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import mockData from "../../data/catalogue.json";
 import searchAndAct from "../../utils/searchAndAct";
+import { useSelector, useDispatch } from "react-redux";
+import { handleData } from "../../actions";
 
 function ProductListingPage() {
+  const cartItemIdsRX = useSelector((state) => state.cartItemIds);
+  const dataRX = useSelector((state) => state.data);
+  const dispatch = useDispatch();
   const [ShowSide, setShowSide] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [data, setData] = useState(mockData); // data is the original data from catalogue.json
-  const [resultData, setResultData] = useState(data);
-  const [cartItemIds, setCartItemIds] = useState([]); // cartItemIds is the array of ids of the items in the cart [1, 2, 3
+  const [data, setData] = useState(dataRX); // data is the original data from catalogue.json
+  const [resultData, setResultData] = useState(dataRX);
+  const [cartItemIds, setCartItemIds] = useState(cartItemIdsRX); // cartItemIds is the array of ids of the items in the cart [1, 2, 3
 
   const onSearch = (searchItem) => {
     setSearchTerm(searchItem);
@@ -25,6 +29,7 @@ function ProductListingPage() {
     console.log(`add ${id}`);
     let result = searchAndAct(id, "add", data);
     console.log(result[id - 1]);
+    dispatch(handleData([...result]));
     setData(result);
     result = searchAndAct(id, "add", resultData);
     console.log(result[id - 1]);
@@ -35,6 +40,7 @@ function ProductListingPage() {
     console.log(`remove ${id}`);
     let result = searchAndAct(id, "remove", data);
     console.log(result[id - 1]);
+    dispatch(handleData([...result]));
     setData(result);
     result = searchAndAct(id, "remove", data);
     console.log(result[id - 1]);
