@@ -55,6 +55,7 @@ list-style: none;
     text-shadow: #6e58ff 0px 0px 0px;
     padding: .2rem 0;
     transition: color .3s ease-in-out, text-shadow .3s ease-in-out;
+    cursor: pointer;
 }
 
 .link:hover {

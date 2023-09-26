@@ -119,3 +119,12 @@
     color: #6e58ff;
 }
 
+@media screen and (max-width: 768px) {
+    .cart-item-holder{
+        width: 100%;
+    }
+
+    .cart-item-body{
+        width: 100%;
+    }
+}

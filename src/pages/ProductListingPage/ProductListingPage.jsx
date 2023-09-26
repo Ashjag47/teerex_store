@@ -21,11 +21,36 @@ function ProductListingPage() {
   const [resultData, setResultData] = useState(dataRX);
   const [cartItemIds, setCartItemIds] = useState(cartItemIdsRX); // cartItemIds is the array of ids of the items in the cart [1, 2, 3
 
+  const [selectedColor, setSelectedColor] = useState([]);
+  const [selectedGender, setSelectedGender] = useState([]);
+  const [selectedType, setSelectedType] = useState([]);
+  const [selectedPrice, setSelectedPrice] = useState([]);
+
   const onSearch = (searchItem) => {
     setSearchTerm(searchItem);
     setResultData(
       data.filter((item) => {
-        return item.name.toLowerCase().includes(searchItem.toLowerCase());
+        return (
+          (selectedColor.length !== 0
+            ? selectedColor.includes(item.color)
+            : true) &&
+          (selectedGender.length !== 0
+            ? selectedGender.includes(item.gender)
+            : true) &&
+          (selectedType.length !== 0
+            ? selectedType.includes(item.type)
+            : true) &&
+          (selectedPrice.length !== 0
+            ? selectedPrice.reduce((acc, range) => {
+                return (
+                  acc || (item.price >= range[0] && item.price <= range[1])
+                );
+              }, true)
+            : true) &&
+          (searchTerm
+            ? item.name.toLowerCase().includes(searchTerm.toLowerCase())
+            : true)
+        );
       })
     );
   };
@@ -73,7 +98,19 @@ function ProductListingPage() {
           id={ShowSide ? "sidebar-active" : "sidebar"}
         >
           <div className="filter-pipeline">
-            <FilterPipeline />
+            <FilterPipeline
+              data={data}
+              setResultData={setResultData}
+              searchTerm={searchTerm}
+              selectedColor={selectedColor}
+              setSelectedColor={setSelectedColor}
+              selectedGender={selectedGender}
+              setSelectedGender={setSelectedGender}
+              selectedType={selectedType}
+              setSelectedType={setSelectedType}
+              selectedPrice={selectedPrice}
+              setSelectedPrice={setSelectedPrice}
+            />
           </div>
         </div>
 

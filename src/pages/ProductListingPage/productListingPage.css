@@ -24,6 +24,7 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     background-color: #fff;
     height: 77vh;
+    overflow-y: scroll;
 }
 
 .product-card-holder{
