@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { Navbar, SearchBar, ProductCard } from "../../components";
+import {
+  Navbar,
+  SearchBar,
+  ProductCard,
+  FilterPipeline,
+} from "../../components";
 import "./productListingPage.css";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import searchAndAct from "../../utils/searchAndAct";
@@ -67,7 +72,9 @@ function ProductListingPage() {
           className="filter-pipeline-holder"
           id={ShowSide ? "sidebar-active" : "sidebar"}
         >
-          <div className="filter-pipeline">Filter Pipeline</div>
+          <div className="filter-pipeline">
+            <FilterPipeline />
+          </div>
         </div>
 
         <div className="product-card-holder">

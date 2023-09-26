@@ -1,8 +1,8 @@
-export const deleteCartItem = (id) => {
+export const deleteCartItem = (cartItems) => {
   // id is the id of the item to be deleted
   return {
     type: "DELETE_CART_ITEM",
-    payload: id,
+    payload: cartItems,
   };
 };
 
